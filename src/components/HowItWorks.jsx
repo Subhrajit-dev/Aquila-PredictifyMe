@@ -1,53 +1,57 @@
-import React from "react";
-import bgImage from "../assets/backgrounds/how-bg.jpg";
+import { motion } from "framer-motion";
+import { FaSignal, FaBrain, FaChartLine } from "react-icons/fa";
+import HolographicRibbon from "./HolographicRibbon";
 
 export default function HowItWorks() {
   const steps = [
     {
-      title: "Your Activity",
-      desc: "Sleep · Screen · Typing · Study Load",
-      color: "bg-teal-50",
+      icon: <FaSignal className="text-4xl text-purple-400 mb-6" />,
+      title: "Digital Signals",
+      text: "Sleep timing • Screen activity • Typing rhythm • Calendar load",
     },
     {
-      title: "AI Detection Models",
-      desc: "Stress · Fatigue · Cognitive Load",
-      color: "bg-blue-50",
+      icon: <FaBrain className="text-4xl text-pink-400 mb-6" />,
+      title: "AI Processing",
+      text: "Machine-learning models study your routine over time.",
     },
     {
-      title: "Behavior Forecast",
-      desc: "Burnout · Focus · Discipline",
-      color: "bg-purple-50",
-    },
-    {
-      title: "Personalized Insights",
-      desc: "Sleep Fixes · Habit Plans · Alerts",
-      color: "bg-orange-50",
+      icon: <FaChartLine className="text-4xl text-indigo-400 mb-6" />,
+      title: "Predictive Insights",
+      text: "Identifies unusual shifts & generates early warnings.",
     },
   ];
 
   return (
-    <section
-      className="py-24 bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage: `url(${bgImage})`,  // ✅ FIXED
-      }}
-    >
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-14 dark:text-white">
-          How Our AI Works
-        </h2>
+    <section id="how" className="py-32 relative z-10 overflow-hidden">
+      {/* Holographic Ribbons */}
+      <HolographicRibbon position="bottom-left" />
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {steps.map((s, i) => (
-            <div
-              key={i}
-              className={`${s.color} p-8 rounded-2xl shadow-xl text-center`}
-            >
-              <h3 className="font-bold text-lg">{s.title}</h3>
-              <p className="text-slate-600 mt-2">{s.desc}</p>
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-4xl md:text-5xl font-bold text-center glow-text mb-20"
+      >
+        How It Works
+      </motion.h2>
+
+      <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto px-6">
+        {steps.map((s, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.2, duration: 0.6 }}
+            className="tech-card p-8 flex flex-col items-center text-center group hover:bg-white/5 transition-all"
+          >
+            <div className="p-4 rounded-full bg-white/5 mb-6 group-hover:scale-125 transition-transform duration-300">
+              {s.icon}
             </div>
-          ))}
-        </div>
+            <h3 className="text-2xl font-bold text-white mb-4">{s.title}</h3>
+            <p className="text-gray-400 leading-relaxed">{s.text}</p>
+          </motion.div>
+        ))}
       </div>
     </section>
   );

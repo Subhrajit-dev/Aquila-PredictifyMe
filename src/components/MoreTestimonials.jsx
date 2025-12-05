@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export default function MoreTestimonials() {
   const data = [
     { name: "Aditi", text: "Helped me fix my night schedule!" },
@@ -9,21 +11,36 @@ export default function MoreTestimonials() {
   ];
 
   return (
-    <section className="py-20 bg-white dark:bg-slate-950">
-      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-6">
-        {data.map((d, i) => (
-          <div
-            key={i}
-            className="p-6 bg-gray-50 dark:bg-slate-800 rounded-xl shadow"
-          >
-            <p className="text-lg italic text-slate-700 dark:text-slate-300">
-              “{d.text}”
-            </p>
-            <p className="mt-4 font-bold text-slate-900 dark:text-white">
-              — {d.name}
-            </p>
-          </div>
-        ))}
+    <section className="py-24 relative z-10">
+      <div className="max-w-6xl mx-auto px-6">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center text-3xl md:text-5xl font-bold glow-text mb-16"
+        >
+          What Users Say
+        </motion.h2>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {data.map((d, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              className="tech-card p-6 hover:bg-white/5 transition-colors"
+            >
+              <p className="text-lg italic text-gray-300">
+                “{d.text}”
+              </p>
+              <p className="mt-4 font-bold text-purple-400">
+                — {d.name}
+              </p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

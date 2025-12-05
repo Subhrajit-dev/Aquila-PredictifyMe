@@ -9,35 +9,34 @@ import ProductStory from "../components/ProductStory";
 import AiArchitecture from "../components/AiArchitecture";
 import DeepDive from "../components/DeepDive";
 import BeforeAfter from "../components/BeforeAfter";
+import TeamSection from "../components/TeamSection";
 import FinalCta from "../components/FinalCta";
+import CelestialBackground from "../components/CelestialBackground";
 
 export default function Home() {
   useEffect(() => window.scrollTo(0, 0), []);
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden bg-[#050507] text-white">
+
+      {/* CELESTIAL BACKGROUND */}
+      <CelestialBackground />
 
       {/* HERO */}
       <Hero />
 
       {/* STATS SLIDER */}
-      <div className="py-16 bg-white dark:bg-slate-900">
-        <StatsSlider />
-      </div>
+      <StatsSlider />
 
       {/* HOW IT WORKS */}
-      <div className="py-16 bg-gray-50 dark:bg-slate-900">
-        <HowItWorks />
-      </div>
+      <HowItWorks />
 
       {/* CORE FEATURES */}
-      <div className="py-16 bg-white dark:bg-slate-900">
-        <FeaturesGrid />
-      </div>
+      <FeaturesGrid />
 
       {/* QUOTE */}
-      <section className="py-16 text-center bg-gray-50 dark:bg-slate-900">
-        <blockquote className="italic text-lg max-w-3xl mx-auto text-slate-700 dark:text-slate-300">
+      <section className="py-24 text-center relative z-10">
+        <blockquote className="text-purple-300 text-2xl glow-text max-w-3xl mx-auto px-6">
           “Early warnings can save months of stress. Prevention is power.”
         </blockquote>
       </section>
@@ -56,6 +55,9 @@ export default function Home() {
 
       {/* BEFORE / AFTER */}
       <BeforeAfter />
+
+      {/* TEAM SECTION */}
+      <TeamSection />
 
       {/* FINAL CTA */}
       <FinalCta />

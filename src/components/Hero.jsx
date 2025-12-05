@@ -1,57 +1,66 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import heroImg from "../assets/backgrounds/hero.jpg";  // ✅ Correct import
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import HolographicRibbon from "./HolographicRibbon";
 
 export default function Hero() {
-  const nav = useNavigate();
-
   return (
     <section
-      className="h-screen w-full bg-cover bg-center bg-no-repeat flex items-center justify-center text-center px-6 relative"
-      style={{
-        backgroundImage: `url(${heroImg})`,   // ✅ Background applied
-      }}
+      id="hero"
+      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden px-4 py-20"
     >
-      {/* Dark overlay for readability */}
-      <div className="absolute inset-0 bg-black/40"></div>
+      {/* Holographic Ribbons */}
+      <HolographicRibbon position="top-right" />
+      <HolographicRibbon position="top-left" />
 
-      {/* Content */}
-      <div className="relative z-10 max-w-3xl">
-        <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight drop-shadow-lg">
-          Predict Problems Early.
-          <br />
-          <span className="text-teal-300">
-            Improve Your Digital Wellbeing.
-          </span>
-        </h1>
+      {/* Background Logo */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+        <img
+          src="/logo512.png"
+          alt="Background Logo"
+          className="w-64 h-64 md:w-96 md:h-96 lg:w-[500px] lg:h-[500px] opacity-30 blur-sm"
+        />
+      </div>
 
-        <p className="mt-4 text-white/90 text-lg drop-shadow">
-          PredictifyMe analyzes your sleep cycles, screen exposure, typing rhythm,
-          and workload patterns to detect early signs of burnout & stress — keeping
-          you balanced, focused, and in control.
-        </p>
+      {/* Centered Content */}
+      <div className="text-center z-20 px-4 sm:px-6 max-w-5xl mx-auto w-full">
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-[2.2rem] sm:text-[4rem] md:text-[6rem] lg:text-[7rem] font-bold text-white glow-text tracking-tight leading-tight sm:leading-none mb-6 sm:mb-8 font-orbitron"
+        >
+          PREDICTIFY<span className="text-purple-400">ME</span>
+        </motion.h1>
 
-        {/* CTA Buttons */}
-        <div className="mt-6 flex justify-center gap-4">
-          <button
-            onClick={() => nav("/signin")}
-            className="px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-lg shadow-md"
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-xs sm:text-base md:text-lg lg:text-xl text-gray-300 mb-8 sm:mb-12 tracking-wide px-2 leading-relaxed"
+        >
+          Your Invisible Early-Warning System for Stress and Productivity Drops
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
+        >
+          <Link
+            to="/signup"
+            className="w-full sm:w-auto px-8 sm:px-10 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-base sm:text-lg rounded-full hover:scale-105 transition-transform shadow-lg shadow-purple-500/50"
           >
             Get Started
-          </button>
-
-          <button
-            onClick={() => nav("/signup")}
-            className="px-6 py-3 bg-white text-slate-800 rounded-lg shadow"
+          </Link>
+          <a
+            href="#how"
+            className="w-full sm:w-auto px-8 sm:px-10 py-3 sm:py-4 border-2 border-purple-500 text-purple-300 font-bold text-base sm:text-lg rounded-full hover:bg-purple-500/10 transition-all"
           >
             Learn More
-          </button>
-        </div>
-
-        <p className="mt-4 text-white/70 text-sm">
-          No tracking of personal content · Privacy-first AI · Student-friendly
-        </p>
-      </div>
-    </section>
+          </a>
+        </motion.div>
+      </div >
+    </section >
   );
 }

@@ -25,34 +25,42 @@ export default function DeepDive() {
   ];
 
   return (
-    <section className="py-24 bg-white dark:bg-slate-950">
+    <section className="py-24 relative z-10">
       <div className="max-w-5xl mx-auto px-6 text-center mb-20">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-3xl font-bold text-slate-900 dark:text-white"
+          viewport={{ once: true }}
+          className="text-3xl md:text-5xl font-bold glow-text"
         >
           How PredictifyMe Works Internally
         </motion.h2>
-        <p className="mt-4 text-slate-600 dark:text-slate-300 text-lg max-w-3xl mx-auto">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="mt-6 text-gray-400 text-lg max-w-3xl mx-auto"
+        >
           A transparent breakdown of the AI pipeline that powers early warnings,
           personalized insights, and burnout predictions — designed ethically, privacy-first.
-        </p>
+        </motion.p>
       </div>
 
-      <div className="max-w-5xl mx-auto px-6 space-y-14">
+      <div className="max-w-5xl mx-auto px-6 space-y-8">
         {pipeline.map((step, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, x: i % 2 === 0 ? -60 : 60 }}
+            initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
             whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="p-10 rounded-2xl shadow-xl bg-gray-50 dark:bg-slate-800 border border-white/10 text-left"
+            className="p-8 rounded-2xl tech-card border border-white/10 text-left hover:bg-white/5 transition-colors"
           >
-            <h3 className="text-2xl font-semibold text-slate-900 dark:text-white mb-3">
+            <h3 className="text-2xl font-semibold text-white mb-3">
               {step.title}
             </h3>
-            <p className="text-slate-700 dark:text-slate-300 text-lg">
+            <p className="text-gray-400 text-lg leading-relaxed">
               {step.desc}
             </p>
           </motion.div>

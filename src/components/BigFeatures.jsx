@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FiMoon, FiClock, FiCpu } from "react-icons/fi";
+import HolographicRibbon from "./HolographicRibbon";
 
 export default function BigFeatures() {
   const features = [
@@ -24,11 +25,19 @@ export default function BigFeatures() {
   ];
 
   return (
-    <section className="py-20 bg-gray-50 dark:bg-slate-900">
+    <section className="py-24 relative z-10 overflow-hidden">
+      {/* Holographic Ribbons */}
+      <HolographicRibbon position="top-right" />
+
       <div className="max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-14">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-5xl font-bold glow-text mb-16"
+        >
           Core Highlights
-        </h2>
+        </motion.h2>
 
         <div className="grid md:grid-cols-3 gap-10">
           {features.map((f, i) => (
@@ -36,12 +45,13 @@ export default function BigFeatures() {
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-lg text-left"
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.2, duration: 0.5 }}
+              className="tech-card p-8 text-left hover:bg-white/5 transition-all"
             >
-              <div className="text-teal-600 dark:text-teal-300 mb-4">{f.icon}</div>
-              <h3 className="text-xl font-semibold mb-2 dark:text-white">{f.title}</h3>
-              <p className="text-slate-600 dark:text-slate-300">{f.description}</p>
+              <div className="text-purple-400 mb-6 p-3 bg-purple-500/10 rounded-lg w-fit">{f.icon}</div>
+              <h3 className="text-xl font-bold mb-3 text-white">{f.title}</h3>
+              <p className="text-gray-400 leading-relaxed">{f.description}</p>
             </motion.div>
           ))}
         </div>
