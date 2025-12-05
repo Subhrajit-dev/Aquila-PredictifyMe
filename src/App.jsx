@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { SignedIn, SignedOut, RedirectToSignIn } from "@clerk/clerk-react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import InstallPrompt from "./components/InstallPrompt";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -113,6 +114,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <InstallPrompt />
     </div>
   );
 }
