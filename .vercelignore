@@ -1,0 +1,11 @@
+# Ignore backend for frontend-only deployment
+backend/
+node_modules/
+.env
+*.log
+
+# Keep these for frontend deployment
+!public/
+!src/
+!package.json
+!package-lock.json
